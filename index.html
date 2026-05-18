@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KingsTR Dispatch – Professional Truck Dispatching Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0A1628;
+      --royal: #1B3A6B;
+      --gold: #C9952A;
+      --gold-light: #E8B84B;
+      --white: #FFFFFF;
+      --off-white: #F7F8FA;
+      --gray-100: #EEF0F4;
+      --gray-400: #8D96A8;
+      --gray-700: #3A4354;
+      --text: #1C2333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-100);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%;
+      height: 72px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-icon svg { width: 22px; height: 22px; fill: var(--gold); }
+    .logo-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); font-weight: 700; }
+    .logo-text span { color: var(--gold); }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--gray-700); transition: color .2s; }
+    .nav-links a:hover { color: var(--navy); }
+
+    .nav-cta {
+      background: var(--navy); color: var(--white);
+      padding: 10px 24px; border-radius: 6px;
+      text-decoration: none; font-size: 0.88rem; font-weight: 600;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--royal); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--navy) 0%, var(--royal) 55%, #2A5298 100%);
+      display: flex; align-items: center;
+      padding: 120px 6% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,149,42,0.15);
+      border: 1px solid rgba(201,149,42,0.4);
+      color: var(--gold-light);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; }
+
+    .hero-content { max-width: 640px; position: relative; z-index: 2; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 24px;
+      animation: fadeUp .7s .1s ease both;
+    }
+    .hero h1 span { color: var(--gold-light); }
+    .hero p {
+      font-size: 1.08rem; color: rgba(255,255,255,0.75);
+      line-height: 1.7; max-width: 520px;
+      margin-bottom: 40px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      animation: fadeUp .7s .3s ease both;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 14px 32px; border-radius: 6px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; transition: all .2s;
+      border: 2px solid var(--gold);
+    }
+    .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,149,42,0.35); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 14px 32px; border-radius: 6px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: all .2s;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    .hero-stats {
+      display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap;
+      animation: fadeUp .7s .4s ease both;
+    }
+    .stat-item { text-align: left; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold-light); font-weight: 700; }
+    .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+    .hero-truck {
+      position: absolute; right: -2%; bottom: 0;
+      width: 52%; max-width: 660px; opacity: 0.12;
+      pointer-events: none;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 100px 6%; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--navy); line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub { font-size: 1rem; color: var(--gray-400); max-width: 520px; line-height: 1.7; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--off-white); padding: 28px 6%;
+      display: flex; align-items: center; justify-content: center;
+      gap: 56px; flex-wrap: wrap;
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; font-weight: 600; color: var(--gray-700);
+    }
+    .trust-item svg { width: 18px; height: 18px; fill: var(--gold); flex-shrink: 0; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--white); }
+    .services-header { margin-bottom: 56px; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+    .service-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 14px;
+      padding: 36px 32px;
+      transition: all .3s;
+      position: relative; overflow: hidden;
+      background: var(--white);
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .3s;
+    }
+    .service-card:hover { box-shadow: 0 16px 48px rgba(10,22,40,0.1); transform: translateY(-4px); border-color: transparent; }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 100%);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .service-icon svg { width: 26px; height: 26px; fill: var(--gold); }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--navy); margin-bottom: 12px; }
+    .service-card p { font-size: 0.92rem; color: var(--gray-400); line-height: 1.7; margin-bottom: 20px; }
+    .service-link { font-size: 0.85rem; font-weight: 600; color: var(--royal); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .service-link::after { content: '→'; transition: transform .2s; }
+    .service-link:hover::after { transform: translateX(4px); }
+
+    /* ── WHY US ── */
+    .why { background: var(--navy); }
+    .why .section-title { color: var(--white); }
+    .why .section-sub { color: rgba(255,255,255,0.55); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+    .why-item { display: flex; gap: 20px; align-items: flex-start; }
+    .why-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 800;
+      color: var(--gold); line-height: 1; flex-shrink: 0; width: 36px;
+    }
+    .why-item h4 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+    .why-item p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+    .why-visual {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .why-visual-icon { font-size: 5rem; margin-bottom: 24px; }
+    .why-visual h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 12px; }
+    .why-visual p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+    .why-visual .cta-mini {
+      display: inline-block; margin-top: 28px;
+      background: var(--gold); color: var(--navy);
+      padding: 12px 28px; border-radius: 6px;
+      font-weight: 700; font-size: 0.88rem; text-decoration: none;
+      transition: all .2s;
+    }
+    .why-visual .cta-mini:hover { background: var(--gold-light); }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--off-white); }
+    .how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; margin-top: 56px; position: relative; }
+    .how-steps::before {
+      content: '';
+      position: absolute; top: 36px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+      opacity: 0.3;
+    }
+    .step { text-align: center; padding: 0 24px; position: relative; }
+    .step-circle {
+      width: 72px; height: 72px;
+      background: var(--navy); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      border: 3px solid var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: var(--gold); font-weight: 800;
+      position: relative; z-index: 1;
+    }
+    .step h4 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .step p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.65; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+    .contact-info { display: flex; flex-direction: column; gap: 32px; }
+    .contact-item { display: flex; gap: 18px; align-items: flex-start; }
+    .contact-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--off-white); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 22px; height: 22px; fill: var(--navy); }
+    .contact-item h4 { font-size: 0.85rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .contact-item p, .contact-item a { font-size: 1rem; color: var(--navy); text-decoration: none; font-weight: 500; }
+    .contact-item a:hover { color: var(--gold); }
+
+    .contact-form { background: var(--off-white); border-radius: 16px; padding: 44px 40px; }
+    .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #DDE1EA;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--royal); box-shadow: 0 0 0 3px rgba(27,58,107,0.08); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: var(--navy); color: var(--white);
+      border: none; border-radius: 8px;
+      padding: 14px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      transition: all .2s; margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--royal); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); padding: 60px 6% 32px;
+    }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-brand { }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 16px; }
+    .footer-logo span { color: var(--gold); }
+    .footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 300px; }
+    .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a { font-size: 0.88rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .how-steps::before { display: none; }
+    }
+    @media (max-width: 580px) {
+      .hero-stats { gap: 28px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .trust-bar { gap: 24px; }
+      nav { padding: 0 5%; }
+      .hero { padding: 110px 5% 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5L21 12h-4V9.5h2.5zM6 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm11 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+    </div>
+    <span class="logo-text">Kings<span>TR</span> Dispatch</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get a Free Quote</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Licensed & Trusted Dispatch Services</div>
+    <h1>Move Freight.<br/><span>Maximize Revenue.</span><br/>Stay on the Road.</h1>
+    <p>KingsTR Dispatch connects owner-operators and small fleets with top-paying loads, handles all the paperwork, and keeps your wheels turning — so you can focus on driving.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Start Dispatching Today</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Dispatcher Support</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Transparent Rates</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">All</div>
+        <div class="stat-label">48 US States</div>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-truck" viewBox="0 0 600 300" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="140" width="380" height="120" rx="8"/>
+    <rect x="320" y="90" width="200" height="170" rx="8"/>
+    <rect x="440" y="110" width="70" height="70" rx="4" fill="rgba(0,0,0,0.3)"/>
+    <circle cx="80" cy="275" r="35"/>
+    <circle cx="80" cy="275" r="18" fill="rgba(255,255,255,0.4)"/>
+    <circle cx="480" cy="275" r="35"/>
+    <circle cx="480" cy="275" r="18" fill="rgba(255,255,255,0.4)"/>
+    <circle cx="560" cy="275" r="35"/>
+    <circle cx="560" cy="275" r="18" fill="rgba(255,255,255,0.4)"/>
+  </svg>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M12 2L3.5 6.5v5c0 5.25 3.6 10.15 8.5 11.35C16.9 21.65 20.5 16.75 20.5 11.5v-5L12 2zm-1 13l-3-3 1.4-1.4L11 12.2l4.6-4.6L17 9l-6 6z"/></svg>
+    Licensed & Insured
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+    Top-Rated Dispatching
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+    No Hidden Fees
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    24/7 Availability
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+    Fast Load Booking
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Full-Service Dispatching<br/>for Every Truck Type</h2>
+    <p class="section-sub">Whether you run a dry van, flatbed, reefer, or box truck, we have the right loads and the expertise to keep you profitable.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z"/></svg>
+      </div>
+      <h3>Dry Van Dispatch</h3>
+      <p>We source high-paying dry van loads nationwide. Our dispatchers negotiate the best rates on your behalf and handle all broker communication from start to finish.</p>
+      <a href="#contact" class="service-link">Get Started</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M9.5 6.5v3h-3v-3h3M11 5H5v6h6V5zm-1.5 9.5v3h-3v-3h3M11 13H5v6h6v-6zm6.5-6.5v3h-3v-3h3M19 5h-6v6h6V5zm-6 8h1.5v1.5H13V13zm1.5 1.5H16V16h-1.5v-1.5zM16 13h1.5v1.5H16V13zm-3 3h1.5v1.5H13V16zm1.5 1.5H16V19h-1.5v-1.5zM16 16h1.5v1.5H16V16zm1.5-1.5H19V16h-1.5v-1.5zm0 3H19V19h-1.5v-1.5zM22 7h-2V4h-3V2h5v5zm0 15v-5h-5v3h3v2h2zM2 22h5v-3H4v-2H2v5zM2 2v5h2V4h3V2H2z"/></svg>
+      </div>
+      <h3>Reefer Dispatch</h3>
+      <p>Specialized refrigerated freight dispatching. We find temperature-controlled loads that maximize your per-mile rate while keeping your reefer unit running efficiently.</p>
+      <a href="#contact" class="service-link">Get Started</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 6.5l-4-4H4c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-9.5L21 6.5zM19 19H5V4h11.17L19 6.83V19z"/></svg>
+      </div>
+      <h3>Flatbed Dispatch</h3>
+      <p>From steel coils to construction equipment, we specialize in flatbed and step-deck freight. We handle permits, oversized load coordination, and route planning.</p>
+      <a href="#contact" class="service-link">Get Started</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10z"/></svg>
+      </div>
+      <h3>Heavy Haul</h3>
+      <p>Oversized and overweight load specialists. We manage all aspects of heavy haul freight including permits, pilot car coordination, and multi-state route planning.</p>
+      <a href="#contact" class="service-link">Get Started</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+      </div>
+      <h3>Box Truck Dispatch</h3>
+      <p>Full-service box truck load booking for 24ft and 26ft units. We find local, regional, and OTR loads that keep your box truck profitable every week.</p>
+      <a href="#contact" class="service-link">Get Started</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+      </div>
+      <h3>Hotshot Dispatch</h3>
+      <p>Time-sensitive, expedited loads for your pickup and gooseneck trailer. We connect hotshot carriers with urgent freight that commands premium rates.</p>
+      <a href="#contact" class="service-link">Get Started</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-label" style="color:var(--gold)">Why KingsTR Dispatch</div>
+  <h2 class="section-title">We Work Hard<br/>So You Can Drive</h2>
+  <p class="section-sub">We're more than a dispatch service — we're your back-office partner dedicated to your success on the road.</p>
+  <div class="why-grid">
+    <ul class="why-list">
+      <li class="why-item">
+        <div class="why-num">01</div>
+        <div>
+          <h4>Maximum Rate Negotiation</h4>
+          <p>We don't accept the first offer. Our dispatchers negotiate hard to get you the highest rate per mile on every load — every time.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <div class="why-num">02</div>
+        <div>
+          <h4>Full Paperwork Handling</h4>
+          <p>Rate cons, BOLs, PODs, invoicing, and carrier packets — we handle all the paperwork so you stay focused on driving and earning.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <div class="why-num">03</div>
+        <div>
+          <h4>No Forced Dispatch</h4>
+          <p>You're always in control. We present loads and you decide. No pressure, no forced runs — just great opportunities tailored to your lanes.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <div class="why-num">04</div>
+        <div>
+          <h4>Dedicated Dispatcher</h4>
+          <p>You'll have one dedicated dispatcher who knows your preferences, your lanes, and your business — not a random call center agent.</p>
+        </div>
+      </li>
+    </ul>
+    <div class="why-visual">
+      <div class="why-visual-icon">🚛</div>
+      <h3>Ready to Hit the Road with Better Loads?</h3>
+      <p>Join owner-operators and small fleets who trust KingsTR Dispatch to keep their trucks moving and their revenue growing.</p>
+      <a href="#contact" class="cta-mini">Book a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-label">The Process</div>
+  <h2 class="section-title">Up and Running in 4 Simple Steps</h2>
+  <p class="section-sub">Getting started with KingsTR Dispatch is fast, easy, and free to begin.</p>
+  <div class="how-steps">
+    <div class="step">
+      <div class="step-circle">1</div>
+      <h4>Sign Up & Onboard</h4>
+      <p>Fill out our quick form and share your MC number, equipment info, and preferred lanes. Takes under 10 minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">2</div>
+      <h4>We Find Your Loads</h4>
+      <p>Our dispatchers search top load boards and broker networks to find the highest-paying freight that fits your needs.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">3</div>
+      <h4>You Approve & Drive</h4>
+      <p>We send you the best options, you choose what works, and we book it immediately. You just show up and drive.</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">4</div>
+      <h4>Get Paid Fast</h4>
+      <p>We handle invoicing and follow up on payments. You get paid quickly, with full transparency on every load.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Ready to Start Earning More?</h2>
+  <p class="section-sub">Reach out today for a free consultation. No commitment, no pressure — just straight talk about how we can help your business grow.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div>
+          <h4>Phone</h4>
+          <a href="tel:+14437564844">+1 (443) 756-4844</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:gondalusman736@gmail.com">gondalusman736@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </div>
+        <div>
+          <h4>Hours</h4>
+          <p>Available 24/7 — We never sleep so you can.</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div>
+          <h4>Service Area</h4>
+          <p>All 48 contiguous United States</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Request a Free Quote</h3>
+      <div id="form-success" style="display:none; background:#d4edda; color:#155724; border:1px solid #c3e6cb; border-radius:8px; padding:16px; margin-bottom:20px; font-weight:600;">
+        ✅ Message sent! We'll get back to you within 24 hours.
+      </div>
+      <div id="form-error" style="display:none; background:#f8d7da; color:#721c24; border:1px solid #f5c6cb; border-radius:8px; padding:16px; margin-bottom:20px; font-weight:600;">
+        ❌ Something went wrong. Please try again or call us directly.
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input id="f-firstname" type="text" placeholder="John" required />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input id="f-lastname" type="text" placeholder="Smith" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input id="f-email" type="email" placeholder="john@example.com" required />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input id="f-phone" type="tel" placeholder="+1 (555) 000-0000" />
+      </div>
+      <div class="form-group">
+        <label>Truck Type</label>
+        <select id="f-truck">
+          <option value="">Select your equipment...</option>
+          <option>Dry Van</option>
+          <option>Reefer</option>
+          <option>Flatbed</option>
+          <option>Step Deck</option>
+          <option>Box Truck (24ft)</option>
+          <option>Box Truck (26ft)</option>
+          <option>Hotshot / Gooseneck</option>
+          <option>Heavy Haul</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea id="f-message" placeholder="Tell us about your preferred lanes, home base, or any questions..."></textarea>
+      </div>
+      <button class="form-submit" id="form-btn" onclick="submitForm(event)">Send My Request →</button>
+    </div>
+
+    <script>
+    async function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('form-btn');
+      const successBox = document.getElementById('form-success');
+      const errorBox = document.getElementById('form-error');
+      successBox.style.display = 'none';
+      errorBox.style.display = 'none';
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      const data = {
+        firstName: document.getElementById('f-firstname').value,
+        lastName: document.getElementById('f-lastname').value,
+        email: document.getElementById('f-email').value,
+        phone: document.getElementById('f-phone').value,
+        truckType: document.getElementById('f-truck').value,
+        message: document.getElementById('f-message').value
+      };
+
+      try {
+        const res = await fetch('https://formspree.io/f/mlgvdevk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          successBox.style.display = 'block';
+          document.getElementById('f-firstname').value = '';
+          document.getElementById('f-lastname').value = '';
+          document.getElementById('f-email').value = '';
+          document.getElementById('f-phone').value = '';
+          document.getElementById('f-truck').value = '';
+          document.getElementById('f-message').value = '';
+          btn.textContent = 'Message Sent ✓';
+        } else {
+          errorBox.style.display = 'block';
+          btn.textContent = 'Send My Request →';
+          btn.disabled = false;
+        }
+      } catch(err) {
+        errorBox.style.display = 'block';
+        btn.textContent = 'Send My Request →';
+        btn.disabled = false;
+      }
+    }
+    </script>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Kings<span>TR</span> Dispatch</div>
+      <p>Professional truck dispatching services for owner-operators and small fleets. We handle the back office — you handle the road.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Dry Van Dispatch</a></li>
+        <li><a href="#services">Reefer Dispatch</a></li>
+        <li><a href="#services">Flatbed Dispatch</a></li>
+        <li><a href="#services">Heavy Haul</a></li>
+        <li><a href="#services">Box Truck</a></li>
+        <li><a href="#services">Hotshot</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 KingsTR Dispatch. All rights reserved.</p>
+    <p>Built with ❤️ for owner-operators everywhere</p>
+  </div>
+</footer>
+
+</body>
+</html>
